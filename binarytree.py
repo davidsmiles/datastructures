@@ -60,3 +60,18 @@ class BinaryTree:
     def preorder(self):
         self._preorder_recursive(self.head)
 
+    def _postorder_recursive(self, current_node: Node):
+        """
+        Postrder Traversal Binary Tree
+        :param current_node:
+        :return:
+        """
+
+        if not current_node:
+            return
+        self._postorder_recursive(current_node.left)
+        self._postorder_recursive(current_node.right)
+        print(current_node)
+
+    def postorder(self):
+        self._postorder_recursive(self.head)
