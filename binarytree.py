@@ -21,12 +21,24 @@ class BinaryTree:
                 else:
                     current_node.left = new_node
                     break
-            elif new_node.value > current_node.value:
+            else:
                 if current_node.right:
                     current_node = current_node.right
                 else:
                     current_node.right = new_node
                     break
+
+    def find_node(self, value: int):
+        current_node = self.head
+
+        while current_node:
+            if value == current_node.value:
+                return current_node
+            elif value < current_node.value:
+                current_node = current_node.left
+            else:
+                current_node = current_node.right
+        raise LookupError(f'Node with {value} was not found.')
 
     def _inorder_recursive(self, current_node: Node):
         """
