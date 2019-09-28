@@ -34,6 +34,7 @@ class BinaryTree:
         :param current_node:
         :return:
         """
+
         if not current_node:
             return
         self._inorder_recursive(current_node.left)
@@ -42,4 +43,20 @@ class BinaryTree:
 
     def inorder(self):
         self._inorder_recursive(self.head)
+
+    def _preorder_recursive(self, current_node: Node):
+        """
+        Preorder Traversal Binary Tree
+        :param current_node:
+        :return:
+        """
+
+        if not current_node:
+            return
+        print(current_node)
+        self._preorder_recursive(current_node.left)
+        self._preorder_recursive(current_node.right)
+
+    def preorder(self):
+        self._preorder_recursive(self.head)
 
