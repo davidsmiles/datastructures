@@ -1,5 +1,6 @@
 """
 implementing binary tree algorithm, adding new node
+and recursively going over the binary tree
 """
 from node import Node
 
@@ -27,5 +28,18 @@ class BinaryTree:
                     current_node.right = new_node
                     break
 
+    def _inorder_recursive(self, current_node: Node):
+        """
+        Inorder Traversal Binary Tree
+        :param current_node:
+        :return:
+        """
+        if not current_node:
+            return
+        self._inorder_recursive(current_node.left)
+        print(current_node)
+        self._inorder_recursive(current_node.right)
 
+    def inorder(self):
+        self._inorder_recursive(self.head)
 

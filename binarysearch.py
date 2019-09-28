@@ -4,13 +4,14 @@ A complexity of O(log2n)
 Binary search works by at every jump leaving you with a decision: go right or go left
 """
 
-numbers = [1, 3, 4, 5, 7, 9, 13, 14, 22, 34, 38, 44, 53, 54, 56, 59, 90, 95, 717, 6756, 918845]
+numbers = [1, 3, 4, 5, 7, 9, 13, 14, 22, 34, 38,
+           44, 53, 54, 56, 59, 90, 95, 717, 6756, 918845]
 
 final = len(numbers)
 init = 0
 middle = final // 2
 
-query = 29
+query = 56
 jumps = 0
 
 if query in numbers:
