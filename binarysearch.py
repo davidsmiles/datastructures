@@ -10,21 +10,21 @@ final = len(numbers)
 init = 0
 middle = final // 2
 
-query = 918845
-
+query = 29
 jumps = 0
 
-while numbers[middle] != query:
-    if query > numbers[middle]:
-        init = middle
-        middle = (final + init) // 2
-        jumps += 1
-    elif query < numbers[middle]:
-        final = middle
-        middle = (final + init) // 2
-        jumps += 1
+if query in numbers:
+    while numbers[middle] != query:
+        if query > numbers[middle]:
+            init = middle
+            middle = (final + init) // 2
+            jumps += 1
+        elif query < numbers[middle]:
+            final = middle
+            middle = (final + init) // 2
+            jumps += 1
 
-print(f'It took us {jumps} jumps')
-print(f'{numbers[middle]} was found at index {middle}')
-
-
+    print(f'It took us {jumps} jumps')
+    print(f'{numbers[middle]} was found at index {middle}')
+else:
+    print(f'{query} not in list')
