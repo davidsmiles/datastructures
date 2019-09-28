@@ -28,7 +28,7 @@ class BinaryTree:
                     current_node.right = new_node
                     break
 
-    def find_node(self, value: int):
+    def find_node(self, value: int) -> Node:
         current_node = self.head
 
         while current_node:
@@ -39,6 +39,54 @@ class BinaryTree:
             else:
                 current_node = current_node.right
         raise LookupError(f'Node with {value} was not found.')
+
+    def find_parent(self, value: int) -> Node:
+        if self.head and self.head.value == value:
+            return self.head
+
+        current_node = self.head
+        while current_node:
+            #   if you are looking to delete the head, checking the children won't give us the head
+            if (current_node.left and current_node.left.value == value) or\
+                    (current_node.right and current_node.right.value == value):
+                return current_node
+            elif value < current_node.value:
+                current_node = current_node.left
+            else:
+                current_node = current_node.right
+
+    def find_rightmost(self, node: Node) -> Node:
+        current_node = node
+        while current_node.right:
+            current_node = current_node.right
+        return current_node
+
+    def delete_node(self, value):
+        to_delete = self.find_node(value)
+        to_delete_parent = self.find_parent(value)
+
+        if to_delete.left and to_delete.right:
+            # we have two children
+            pass
+
+        elif to_delete.left or to_delete.right:
+            # we have one child
+            if to_delete == to_delete_parent.left:
+                to_delete_parent.left = to_delete.left or to_delete.right
+            elif to_delete == to_delete_parent.right:
+                to_delete_parent.right = to_delete.right or to_delete.left
+            else:
+                self.head = to_delete.right or to_delete.left
+
+        else:
+            # no child
+            if to_delete.value == to_delete_parent.left:
+                to_delete_parent.left = None
+            elif to_delete.value == to_delete_parent.right:
+                to_delete_parent.right = None
+            else:
+                # to delete the head
+                self.head = None
 
     def _inorder_recursive(self, current_node: Node):
         """
